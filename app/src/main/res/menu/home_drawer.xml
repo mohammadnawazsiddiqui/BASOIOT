@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+
+            android:icon="@drawable/dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_attendance"
+            android:icon="@drawable/ic_fingerprint_black_24dp"
+            android:title="Attendance" />
+        <item
+            android:id="@+id/nav_reports"
+
+            android:icon="@drawable/fd9c04e5f46d51f8ac2ee42fb0e7d0fe"
+            android:title="Reports" />
+        <item
+            android:id="@+id/nav_managestaff"
+            android:icon="@drawable/ic_person_outline_black_24dp"
+            android:title="Manage Staff" />
+        <item
+            android:id="@+id/nav_logout"
+
+            android:icon="@drawable/logout"
+            android:title="Log Out" />
+    </group>
+
+</menu>
