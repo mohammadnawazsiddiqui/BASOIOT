@@ -100,7 +100,7 @@ public class AddSatffActivity extends AppCompatActivity {
                 mProgressDialog.setMessage("Almost done!");
                 mProgressDialog.setCanceledOnTouchOutside(false);
                 mProgressDialog.show();
-                db.getReference().child("Staff").child(uid).push().setValue(staff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                db.getReference().child("Staff").push().setValue(staff).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         hideDialog();

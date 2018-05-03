@@ -44,9 +44,9 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private DatabaseReference mRootDatabaseRef;
 
     private FirebaseAuth mAuth;
-  private EditText eTextpass;
- private EditText eTextuser;
-    private ProgressDialog dialog ;
+    private EditText eTextpass;
+    private EditText eTextuser;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
     }
 
-    private void SignIn(){
+    private void SignIn() {
         // ProgressDialog
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle("Signing In");
@@ -142,13 +142,13 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                             mRootDatabaseRef.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if(!dataSnapshot.hasChild(current_user_uid)){
+                                    if (!dataSnapshot.hasChild(current_user_uid)) {
 
 
                                         Map userMap = new HashMap<>();
-                                        userMap.put("Users/" + current_user_uid + "/Profile/name",current_User.getDisplayName());
-                                        userMap.put("Users/" + current_user_uid + "/Profile/email",current_User.getEmail());
-                                        userMap.put("Users/" + current_user_uid + "/Profile/photo_url",current_User.getPhotoUrl().toString());
+                                        userMap.put("Users/" + current_user_uid + "/Profile/name", current_User.getDisplayName());
+                                        userMap.put("Users/" + current_user_uid + "/Profile/email", current_User.getEmail());
+                                        userMap.put("Users/" + current_user_uid + "/Profile/photo_url", current_User.getPhotoUrl().toString());
 
                                         mRootDatabaseRef.updateChildren(userMap, new DatabaseReference.CompletionListener() {
                                             @Override
@@ -174,7 +174,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 });
     }
 
-    private void sendToHome(){
+    private void sendToHome() {
         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
         finish();
     }
@@ -184,9 +184,9 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         showDialog("registring...");
         String email = eTextuser.getText().toString();
         String password = eTextpass.getText().toString();
-        if (password.isEmpty() || email.isEmpty()){
+        if (password.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "invalid", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -208,9 +208,9 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private void registerUser() {
         String email = eTextuser.getText().toString();
         String password = eTextpass.getText().toString();
-        if (password.isEmpty() || email.isEmpty()){
+        if (password.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "invalid", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -238,19 +238,20 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        if (currentUser!=null){
-            startActivity(new Intent( this,HomeActivity.class));
+        if (currentUser != null) {
+            startActivity(new Intent(this, HomeActivity.class));
             finish();
         }
     }
 
-    public void showDialog(String msg){
+    public void showDialog(String msg) {
         dialog = new ProgressDialog(this);
         dialog.setMessage(msg);
         dialog.show();
     }
-    public void hideDialog(){
-        if (dialog!=null && dialog.isShowing()){
+
+    public void hideDialog() {
+        if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
     }

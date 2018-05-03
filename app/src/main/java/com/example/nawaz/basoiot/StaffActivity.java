@@ -56,7 +56,7 @@ public class StaffActivity extends AppCompatActivity {
         FDB = FirebaseDatabase.getInstance();
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DBR = FDB.getReference().child("Staff").child(uid);
+        DBR = FDB.getReference().child("Staff");
         showDialog();
         DBR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -91,7 +91,6 @@ public class StaffActivity extends AppCompatActivity {
         dialog.setMessage("wait...");
         dialog.show();
     }
-
 
 
     @Override
